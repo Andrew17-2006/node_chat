@@ -1,10 +1,24 @@
 module.exports = {
-  extends: '@mate-academy/eslint-config',
+  extends: [
+    '@mate-academy/eslint-config',
+    'plugin:react/recommended',
+  ],
   env: {
-    jest: true
+    jest: true,
+    browser: true,
   },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: ['jest', 'react'],
   rules: {
-    'no-proto': 0
+    'no-proto': 0,
   },
-  plugins: ['jest']
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
