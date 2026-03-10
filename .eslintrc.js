@@ -1,12 +1,16 @@
 module.exports = {
-  extends: ['@mate-academy/eslint-config', 'plugin:react/recommended'],
+  extends: [
+    '@mate-academy/eslint-config',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+  ],
   env: {
     jest: true,
     browser: true,
     node: true,
   },
   parserOptions: {
-    ecmaVersion: 2020,
+    requireConfigFile: false,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
@@ -15,6 +19,7 @@ module.exports = {
   plugins: ['jest', 'react'],
   rules: {
     'no-proto': 0,
+    'no-console': 0,
     'react/react-in-jsx-scope': 'off',
     'no-shadow': [
       'error',
@@ -24,7 +29,6 @@ module.exports = {
         allow: [],
       },
     ],
-    'no-console': 0,
   },
   settings: {
     react: {

@@ -42,14 +42,19 @@ export function App() {
       return;
     }
 
-    ws.addEventListener('open', () => {
+    function sendInitial() {
       ws.send(JSON.stringify({ type: 'set_username', username }));
       ws.send(JSON.stringify({ type: 'join_room', roomId: 'general' }));
-    });
+    }
 
-    if (ws.readyState !== 1) {
-      ws.send(JSON.stringify({ type: 'set_username', username }));
-      ws.send(JSON.stringify({ type: 'join_room', roomId: 'general' }));
+    if (ws.readyState === 1) {
+      sendInitial();
+    } else {
+      ws.addEventListener('open', sendInitial);
+
+      return () => {
+        ws.removeEventListener('open', sendInitial);
+      };
     }
   }, [ws, username]);
 

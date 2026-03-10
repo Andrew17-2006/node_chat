@@ -199,7 +199,7 @@ wss.on('connection', (ws) => {
     if (info && info.roomId) {
       broadcastToRoom(info.roomId, {
         type: 'user_left',
-        username: info.username,
+        username: info.username || 'Anonymous',
       });
     }
     clients.delete(ws);
