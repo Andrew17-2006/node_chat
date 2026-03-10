@@ -7,7 +7,7 @@ export const MessageForm = ({ ws, roomId }) => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!text.trim() || !ws) {
+    if (!text.trim() || !ws || ws.readyState !== 1) {
       return;
     }
 

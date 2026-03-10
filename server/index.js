@@ -96,7 +96,7 @@ wss.on('connection', (ws) => {
           data.roomId,
           {
             type: 'user_joined',
-            username: client.username,
+            username: client.username || 'Anonymous',
             roomId: data.roomId,
           },
           ws,

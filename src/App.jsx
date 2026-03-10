@@ -76,7 +76,14 @@ export function App() {
         break;
       case 'room_deleted':
         setRooms((prev) => prev.filter((r) => r.id !== data.roomId));
-        setCurrentRoomId((prev) => (prev === data.roomId ? 'general' : prev));
+
+        setCurrentRoomId((prev) => {
+          if (prev === data.roomId) {
+            joinRoom('general');
+          }
+
+          return prev === data.roomId ? 'general' : prev;
+        });
         break;
     }
   }
@@ -101,10 +108,18 @@ export function App() {
   }
 
   function createRoom(roomName) {
+    if (!ws || ws.readyState !== 1) {
+      return;
+    }
+
     ws.send(JSON.stringify({ type: 'create_room', name: roomName }));
   }
 
   function renameRoom(roomId, roomName) {
+    if (!ws || ws.readyState !== 1) {
+      return;
+    }
+
     ws.send(JSON.stringify({ type: 'rename_room', roomId, name: roomName }));
   }
 
