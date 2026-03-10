@@ -3,6 +3,7 @@ module.exports = {
   env: {
     jest: true,
     browser: true,
+    node: true,
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -15,17 +16,15 @@ module.exports = {
   rules: {
     'no-proto': 0,
     'react/react-in-jsx-scope': 'off',
-    'no-unused-vars': [
+    'no-shadow': [
       'error',
       {
-        varsIgnorePattern: 'React',
-        ignoreRestSiblings: true,
+        builtinGlobals: false,
+        hoist: 'all',
+        allow: [],
       },
     ],
-  },
-  globals: {
-    localStorage: 'readonly',
-    WebSocket: 'readonly',
+    'no-console': 0,
   },
   settings: {
     react: {
