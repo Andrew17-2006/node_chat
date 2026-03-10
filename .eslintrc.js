@@ -1,8 +1,5 @@
 module.exports = {
-  extends: [
-    '@mate-academy/eslint-config',
-    'plugin:react/recommended',
-  ],
+  extends: ['@mate-academy/eslint-config', 'plugin:react/recommended'],
   env: {
     jest: true,
     browser: true,
@@ -15,6 +12,7 @@ module.exports = {
   plugins: ['jest', 'react'],
   rules: {
     'no-proto': 0,
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     react: {

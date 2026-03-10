@@ -1,5 +1,5 @@
 /* eslint-disable function-paren-newline */
-import { useEffect, useState, React } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { MessageForm } from './MessageForm.jsx';
 import { MessageList } from './MessageList.jsx';
@@ -47,7 +47,7 @@ export function App() {
       ws.send(JSON.stringify({ type: 'join_room', roomId: 'general' }));
     });
 
-    if (ws.readyState === WebSocket.OPEN) {
+    if (ws.readyState !== 1) {
       ws.send(JSON.stringify({ type: 'set_username', username }));
       ws.send(JSON.stringify({ type: 'join_room', roomId: 'general' }));
     }
@@ -92,7 +92,7 @@ export function App() {
   }
 
   function joinRoom(roomId) {
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
+    if (!ws || ws.readyState !== 1) {
       return;
     }
     setCurrentRoomId(roomId);
@@ -109,7 +109,7 @@ export function App() {
   }
 
   function deleteRoom(roomId) {
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
+    if (!ws || ws.readyState !== 1) {
       return;
     }
     ws.send(JSON.stringify({ type: 'delete_room', roomId }));
