@@ -5,6 +5,8 @@ module.exports = {
     browser: true,
   },
   parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
@@ -13,6 +15,17 @@ module.exports = {
   rules: {
     'no-proto': 0,
     'react/react-in-jsx-scope': 'off',
+    'no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: 'React',
+        ignoreRestSiblings: true,
+      },
+    ],
+  },
+  globals: {
+    localStorage: 'readonly',
+    WebSocket: 'readonly',
   },
   settings: {
     react: {

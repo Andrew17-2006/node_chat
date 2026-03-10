@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const MessageForm = ({ ws, roomId }) => {
+export const MessageForm = ({ ws }) => {
   const [text, setText] = useState('');
 
   function handleSubmit(e) {
@@ -37,5 +37,4 @@ export const MessageForm = ({ ws, roomId }) => {
 
 MessageForm.propTypes = {
   ws: PropTypes.object,
-  roomId: PropTypes.string,
 };
